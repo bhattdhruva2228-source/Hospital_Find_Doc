@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="125dp"
+    android:layout_marginBottom="14dp"
+    android:background="#FFFFFF"
+    android:elevation="5dp"
+    android:padding="12dp">
+
+    <ImageView
+        android:id="@+id/ivDocument"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
+        android:contentDescription="Document Icon"
+        android:padding="10dp"
+        android:src="@drawable/outline_assignment_add_24"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvDocumentName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="14dp"
+        android:textColor="#172B4D"
+        android:textSize="17sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/ivDocument"
+        app:layout_constraintTop_toTopOf="@id/ivDocument" />
+
+
+    <TextView
+        android:id="@+id/tvLocation"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="14dp"
+        android:layout_marginTop="7dp"
+        android:textColor="#1E5DB7"
+        android:textSize="13sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/ivDocument"
+        app:layout_constraintTop_toBottomOf="@id/tvDocumentName" />
+
+    <TextView
+        android:id="@+id/tvLastSeen"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="14dp"
+        android:layout_marginTop="6dp"
+        android:textColor="#718096"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/ivDocument"
+        app:layout_constraintTop_toBottomOf="@id/tvLocation" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
