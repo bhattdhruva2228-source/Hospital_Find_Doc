@@ -16,7 +16,6 @@ class DatabaseHelper(context: Context) :
     companion object {
 
         private const val DATABASE_NAME = "FindDoc.db"
-
         private const val DATABASE_VERSION = 1
 
         private const val TABLE_DOCUMENTS = "documents"
@@ -66,7 +65,6 @@ class DatabaseHelper(context: Context) :
     fun insertDocument(document: Document): Long {
 
         val db = writableDatabase
-
         val values = ContentValues()
 
         values.put(
@@ -99,7 +97,6 @@ class DatabaseHelper(context: Context) :
             document.lastSeen
         )
 
-
         val result = db.insert(
             TABLE_DOCUMENTS,
             null,
@@ -122,7 +119,6 @@ class DatabaseHelper(context: Context) :
             "SELECT * FROM $TABLE_DOCUMENTS ORDER BY $COLUMN_ID DESC",
             null
         )
-
 
         if (cursor.moveToFirst()) {
 
@@ -178,10 +174,97 @@ class DatabaseHelper(context: Context) :
             } while (cursor.moveToNext())
         }
 
-
         cursor.close()
         db.close()
 
         return documentList
+    }
+
+
+    fun getDocumentById(id: Int): Document? {
+
+        val db = readableDatabase
+
+        val cursor = db.query(
+            TABLE_DOCUMENTS,
+            null,
+            "$COLUMN_ID = ?",
+            arrayOf(id.toString()),
+            null,
+            null,
+            null
+        )
+
+        var document: Document? = null
+
+        if (cursor.moveToFirst()) {
+
+            document = Document(
+
+                id = cursor.getInt(
+                    cursor.getColumnIndexOrThrow(
+                        COLUMN_ID
+                    )
+                ),
+
+                documentName = cursor.getString(
+                    cursor.getColumnIndexOrThrow(
+                        COLUMN_DOCUMENT_NAME
+                    )
+                ),
+
+                ward = cursor.getString(
+                    cursor.getColumnIndexOrThrow(
+                        COLUMN_WARD
+                    )
+                ),
+
+                storageLocation = cursor.getString(
+                    cursor.getColumnIndexOrThrow(
+                        COLUMN_STORAGE
+                    )
+                ),
+
+                category = cursor.getString(
+                    cursor.getColumnIndexOrThrow(
+                        COLUMN_CATEGORY
+                    )
+                ),
+
+                description = cursor.getString(
+                    cursor.getColumnIndexOrThrow(
+                        COLUMN_DESCRIPTION
+                    )
+                ),
+
+                lastSeen = cursor.getString(
+                    cursor.getColumnIndexOrThrow(
+                        COLUMN_LAST_SEEN
+                    )
+                )
+            )
+        }
+
+        cursor.close()
+        db.close()
+
+        return document
+    }
+
+
+
+    fun deleteDocument(id: Int): Int {
+
+        val db = writableDatabase
+
+        val result = db.delete(
+            TABLE_DOCUMENTS,
+            "$COLUMN_ID = ?",
+            arrayOf(id.toString())
+        )
+
+        db.close()
+
+        return result
     }
 }

@@ -16,7 +16,7 @@
         android:layout_height="55dp"
         android:contentDescription="Document Icon"
         android:padding="10dp"
-        android:src="@drawable/outline_assignment_add_24"
+        android:src="@drawable/document"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

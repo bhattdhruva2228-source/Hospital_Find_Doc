@@ -1,5 +1,6 @@
 package com.example.hospitalfinddoc
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -53,18 +54,42 @@ class DocumentAdapter(
 
         val document = documentList[position]
 
+
         holder.tvDocumentName.text =
             document.documentName
+
 
         holder.tvLocation.text =
             "${document.ward} • ${document.storageLocation}"
 
+
         holder.tvLastSeen.text =
             "Last seen: ${document.lastSeen}"
+
 
         holder.ivDocument.setImageResource(
             android.R.drawable.ic_menu_agenda
         )
+
+
+
+
+        holder.itemView.setOnClickListener {
+
+            val intent = Intent(
+                holder.itemView.context,
+                DocumentDetailsActivity::class.java
+            )
+
+
+            intent.putExtra(
+                "DOCUMENT_ID",
+                document.id
+            )
+
+
+            holder.itemView.context.startActivity(intent)
+        }
     }
 
 
